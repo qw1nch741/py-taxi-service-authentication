@@ -1,6 +1,15 @@
 <ul class="sidebar-nav">
   {% if user.is_authenticated %}
     <li>User: {{ user.username }}</li>
+    <form method="post" action="{% url "logout" %}">
+      {% csrf_token %}
+      <button type="submit">
+          Logout
+        </button>
+    </form>
+    <br>
+    {% else %}
+    <li><a href="{% url 'login' %}">Login</a></li>
     <br>
   {% endif %}
   <li><a href="{% url "taxi:index" %}">Home page</a></li>
